@@ -1,0 +1,15 @@
+* {
+  font-family: Lato;
+}
+form > * {
+  display: block;
+}
+label {
+  margin-top: 8px;
+}
+div.message {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 90%;
+  opacity: 0.5;
+}

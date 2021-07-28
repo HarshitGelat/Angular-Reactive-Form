@@ -1,0 +1,34 @@
+<form name="userInfoForm" [formGroup]="userInfoForm">
+  <!-- Name field -->
+  <label for="name">Your name:</label>
+  <input type="text"  name="name" id="name" formControlName="name"/>
+  <div *ngIf="userInfoForm.get('name').hasError('required') &&
+  userInfoForm.controls['name'].touched">Please enter a name</div>
+  <div *ngIf="!userInfoForm.get('name').hasError('required') && 
+  userInfoForm.get('name').hasError('validFullname')">Please enter both your first and last name</div>
+
+  <!-- Email field -->
+  <label for="email">Your email address:</label>
+  <input type="text" name="email" id="email" formControlName="emailId"/>
+  <div *ngIf="userInfoForm.get('emailId').hasError('required') &&
+  userInfoForm.controls['emailId'].touched">Please enter an email address</div>
+  <div *ngIf="!userInfoForm.get('emailId').hasError('required') && userInfoForm.get('emailId').hasError('email')">Please ensure your email address is correct</div>
+
+  <!-- Repeat email field -->
+  <label for="email2">Enter your email address again:</label>
+  <input type="text" name="email2" id="email2" formControlName="reEnteredEmailId"/>
+  <div *ngIf="userInfoForm.controls['reEnteredEmailId'].touched && (userInfoForm.get('reEnteredEmailId').hasError('required') || 
+  userInfoForm.get('reEnteredEmailId').hasError('emailNotMatching'))">Please ensure your email addresses match</div>
+
+  <!-- Password field -->
+  <label for="password">Your new password:</label>
+  <input type="password" name="password" id="password" formControlName="password"/>
+  <div *ngIf="userInfoForm.get('password').hasError('required') && userInfoForm.controls['password'].touched">Please enter a password</div>
+  <div *ngIf="!userInfoForm.get('password').hasError('required') &&userInfoForm.get('password').hasError('pattern')">Passwords must be at least 8 characters</div>
+
+  <!-- Special message from the NameInfoService -->
+  <div class="message">{{ nameMessage }}</div>
+
+  <input [disabled]="userInfoForm.invalid"
+  type="submit" value="Submit form" />
+</form>
